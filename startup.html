@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flacon Corporation — Precision Engineering Products</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --steel: #1a1f2e;
+    --iron: #0d1117;
+    --chrome: #b8c4d0;
+    --orange: #e85d04;
+    --amber: #f48c06;
+    --slate: #2d3748;
+    --mist: #8899aa;
+    --white: #f0f4f8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--iron);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(13,17,23,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(184,196,208,0.12);
+  }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 3px;
+    color: var(--white);
+  }
+  .logo span { color: var(--orange); }
+
+  nav ul { list-style: none; display: flex; gap: 2.5rem; }
+  nav ul a {
+    text-decoration: none;
+    color: var(--chrome);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  nav ul a:hover { color: var(--orange); }
+
+  .nav-cta {
+    background: var(--orange);
+    color: var(--iron) !important;
+    padding: 0.5rem 1.4rem;
+    font-weight: 600 !important;
+    clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+  }
+  .nav-cta:hover { background: var(--amber); color: var(--iron) !important; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 60% at 70% 50%, rgba(232,93,4,0.08) 0%, transparent 70%),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 80px,
+        rgba(184,196,208,0.03) 80px,
+        rgba(184,196,208,0.03) 81px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 80px,
+        rgba(184,196,208,0.03) 80px,
+        rgba(184,196,208,0.03) 81px
+      );
+  }
+
+  /* Animated gear SVG */
+  .gear-bg {
+    position: absolute; right: -80px; top: 50%; transform: translateY(-50%);
+    width: 600px; height: 600px; opacity: 0.04;
+    animation: spin 40s linear infinite;
+  }
+  @keyframes spin { to { transform: translateY(-50%) rotate(360deg); } }
+
+  .hero-content { position: relative; z-index: 1; }
+
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 5px;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 40px; height: 2px;
+    background: var(--orange);
+  }
+
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 8vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+  }
+  h1 .accent { color: var(--orange); display: block; }
+
+  .hero-desc {
+    color: var(--chrome);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: 440px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  .btn-group { display: flex; gap: 1rem; align-items: center; }
+
+  .btn-primary {
+    background: var(--orange);
+    color: var(--iron);
+    padding: 0.9rem 2.2rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transition: background 0.3s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--amber); transform: translateY(-2px); }
+
+  .btn-secondary {
+    color: var(--chrome);
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: flex; align-items: center; gap: 0.5rem;
+    transition: color 0.3s;
+  }
+  .btn-secondary::after { content: '→'; font-size: 1.1rem; transition: transform 0.3s; }
+  .btn-secondary:hover { color: var(--white); }
+  .btn-secondary:hover::after { transform: translateX(4px); }
+
+  /* Stat cards */
+  .hero-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    position: relative; z-index: 1;
+    background: rgba(184,196,208,0.1);
+    border: 1px solid rgba(184,196,208,0.1);
+    clip-path: polygon(20px 0%, 100% 0%, calc(100% - 20px) 100%, 0% 100%);
+    overflow: hidden;
+  }
+  .stat-card {
+    background: var(--steel);
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--orange);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .stat-card:hover::before { opacity: 1; }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    color: var(--orange);
+    line-height: 1;
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: var(--mist);
+    text-transform: uppercase;
+    margin-top: 0.4rem;
+  }
+
+  /* PRODUCTS */
+  #products {
+    padding: 7rem 4rem;
+    position: relative;
+  }
+
+  .section-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 4rem;
+  }
+  .section-label {
+    font-size: 0.75rem; letter-spacing: 4px; color: var(--orange);
+    text-transform: uppercase; margin-bottom: 0.8rem;
+  }
+  h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    letter-spacing: 2px;
+    line-height: 1;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(184,196,208,0.08);
+  }
+
+  .product-card {
+    background: var(--steel);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+    cursor: default;
+  }
+  .product-card:hover { background: #222d3d; }
+
+  .product-icon {
+    width: 56px; height: 56px;
+    background: rgba(232,93,4,0.15);
+    border: 1px solid rgba(232,93,4,0.3);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.5rem;
+    clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+    font-size: 1.4rem;
+  }
+
+  .product-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .product-card p {
+    color: var(--mist);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+
+  .product-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+    border: 1px solid rgba(232,93,4,0.4);
+    padding: 0.2rem 0.7rem;
+    margin-right: 0.4rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .product-card-featured {
+    grid-column: span 2;
+    background: linear-gradient(135deg, #1e2a3a 0%, var(--steel) 100%);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;
+  }
+  .featured-badge {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    background: var(--orange);
+    color: var(--iron);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0.25rem 0.8rem;
+    clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+  }
+
+  .featured-visual {
+    display: flex; align-items: center; justify-content: center;
+    padding: 2rem;
+  }
+
+  /* Animated cog */
+  .cog-animation { position: relative; width: 140px; height: 140px; }
+  .cog-outer, .cog-inner {
+    position: absolute;
+    border-radius: 50%;
+    border: 3px solid rgba(232,93,4,0.5);
+  }
+  .cog-outer {
+    width: 140px; height: 140px;
+    top: 0; left: 0;
+    animation: spin 8s linear infinite;
+    border-style: dashed;
+  }
+  .cog-inner {
+    width: 80px; height: 80px;
+    top: 30px; left: 30px;
+    animation: spin 5s linear infinite reverse;
+    border-color: rgba(244,140,6,0.6);
+  }
+  .cog-center {
+    position: absolute;
+    width: 30px; height: 30px;
+    background: var(--orange);
+    border-radius: 50%;
+    top: 55px; left: 55px;
+    box-shadow: 0 0 20px rgba(232,93,4,0.5);
+  }
+
+  /* CLIENTS STRIP */
+  .clients-strip {
+    padding: 2.5rem 4rem;
+    border-top: 1px solid rgba(184,196,208,0.08);
+    border-bottom: 1px solid rgba(184,196,208,0.08);
+    display: flex; align-items: center; gap: 4rem;
+  }
+  .clients-label {
+    font-size: 0.7rem; letter-spacing: 3px; color: var(--mist);
+    text-transform: uppercase; white-space: nowrap; min-width: 120px;
+  }
+  .clients-logos {
+    display: flex; gap: 3rem; align-items: center; flex-wrap: wrap;
+  }
+  .client-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    color: rgba(184,196,208,0.35);
+    transition: color 0.3s;
+  }
+  .client-name:hover { color: var(--chrome); }
+
+  /* WHY US */
+  #why {
+    padding: 7rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .why-visual {
+    position: relative;
+    height: 440px;
+  }
+  .blueprint-box {
+    position: absolute;
+    border: 1px solid rgba(184,196,208,0.15);
+    background: var(--steel);
+  }
+  .bb1 { width: 220px; height: 280px; top: 0; left: 0; }
+  .bb2 { width: 180px; height: 200px; top: 60px; left: 180px; background: rgba(232,93,4,0.05); border-color: rgba(232,93,4,0.2); }
+  .bb3 { width: 150px; height: 120px; bottom: 0; left: 80px; }
+
+  .blueprint-box::before {
+    content: '';
+    position: absolute; inset: 8px;
+    border: 1px dashed rgba(184,196,208,0.08);
+  }
+  .bb-label {
+    position: absolute; bottom: 12px; left: 12px;
+    font-size: 0.6rem; letter-spacing: 2px; color: var(--mist);
+    text-transform: uppercase;
+  }
+  .bb-num {
+    position: absolute; top: 12px; right: 12px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem; color: rgba(232,93,4,0.2);
+  }
+
+  .why-features { display: flex; flex-direction: column; gap: 2rem; }
+
+  .feature-row {
+    display: flex; gap: 1.5rem; align-items: flex-start;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(184,196,208,0.08);
+  }
+  .feature-row:last-child { border-bottom: none; }
+
+  .feature-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem; color: rgba(232,93,4,0.2);
+    line-height: 1; min-width: 50px;
+    transition: color 0.3s;
+  }
+  .feature-row:hover .feature-num { color: var(--orange); }
+
+  .feature-text h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .feature-text p {
+    color: var(--mist); font-size: 0.9rem; line-height: 1.6; font-weight: 300;
+  }
+
+  /* CTA BANNER */
+  #cta {
+    margin: 0 4rem 7rem;
+    background: linear-gradient(135deg, #1a2030 0%, #0d1117 100%);
+    border: 1px solid rgba(232,93,4,0.2);
+    padding: 4rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 3rem;
+    position: relative;
+    overflow: hidden;
+    clip-path: polygon(20px 0%, 100% 0%, calc(100% - 20px) 100%, 0% 100%);
+  }
+  #cta::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, var(--orange), var(--amber));
+  }
+  #cta h2 { font-size: clamp(2rem, 4vw, 3.2rem); max-width: 600px; }
+  #cta p { color: var(--mist); margin-top: 0.5rem; font-weight: 300; }
+
+  /* FOOTER */
+  footer {
+    padding: 3rem 4rem;
+    border-top: 1px solid rgba(184,196,208,0.08);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem; letter-spacing: 3px;
+  }
+  .footer-logo span { color: var(--orange); }
+  footer p { color: var(--mist); font-size: 0.8rem; letter-spacing: 1px; }
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a {
+    color: var(--mist); text-decoration: none;
+    font-size: 0.75rem; letter-spacing: 2px;
+    text-transform: uppercase; transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--orange); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-content > * { animation: fadeUp 0.8s ease forwards; opacity: 0; }
+  .hero-eyebrow { animation-delay: 0.1s; }
+  h1 { animation-delay: 0.25s; }
+  .hero-desc { animation-delay: 0.4s; }
+  .btn-group { animation-delay: 0.55s; }
+  .hero-stats { animation: fadeUp 0.8s 0.7s ease forwards; opacity: 0; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 2rem; }
+    nav ul { display: none; }
+    #hero { grid-template-columns: 1fr; padding: 7rem 2rem 3rem; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+    #products { padding: 4rem 2rem; }
+    .products-grid { grid-template-columns: 1fr; }
+    .product-card-featured { grid-column: span 1; grid-template-columns: 1fr; }
+    #why { grid-template-columns: 1fr; padding: 4rem 2rem; }
+    .why-visual { display: none; }
+    #cta { margin: 0 2rem 4rem; grid-template-columns: 1fr; padding: 2.5rem; }
+    footer { padding: 2rem; flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Flacon <span> Corporation</span></div>
+  <ul>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#cta">Contact</a></li>
+    <li><a href="#cta" class="nav-cta">Get Quote</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <svg class="gear-bg" viewBox="0 0 200 200" fill="white" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 30 L110 10 L120 30 L140 20 L140 40 L160 40 L150 60 L170 70 L150 80 L160 100 L140 100 L140 120 L120 110 L110 130 L100 110 L90 130 L80 110 L60 120 L60 100 L40 100 L50 80 L30 70 L50 60 L40 40 L60 40 L60 20 L80 30 Z" opacity="0.5"/>
+    <circle cx="100" cy="70" r="25" fill="none" stroke="white" stroke-width="4"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Precision Engineering Solutions</div>
+    <h1>Built To <span class="accent">Perform.</span> Engineered To Last.</h1>
+    <p class="hero-desc">High-performance mechanical components and industrial products engineered for demanding environments.DC and AC motors, Generators, three-phase commutator motors, thyristor-controlled DC motors, traction motors, variable speed motors, field generators, rotor-powered parallel motors, synchronous motors & series motors.</p>
+    <div class="btn-group">
+      <a href="#products" class="btn-primary">Explore Products</a>
+      <a href="#cta" class="btn-secondary">Request a Quote</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-card">
+      <span class="stat-num">20+</span>
+      <div class="stat-label">Years of Expertise</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">500+</span>
+      <div class="stat-label">Product Range</div>
+    </div>
+    <!-- <div class="stat-card">
+      <span class="stat-num">ISO</span>
+      <div class="stat-label">9001:2015 Certified</div>
+    </div> -->
+    <div class="stat-card">
+      <span class="stat-num">98%</span>
+      <div class="stat-label">On-Time Delivery</div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<div class="clients-strip">
+  <span class="clients-label">Trusted By</span>
+  <div class="clients-logos">
+    <span class="client-name">CATERPILLAR</span>
+    <span class="client-name">SIEMENS</span>
+    <span class="client-name">PARKER</span>
+    <span class="client-name">BOSCH</span>
+    <span class="client-name">HONEYWELL</span>
+    <span class="client-name">EMERSON</span>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="section-header">
+    <div>
+      <div class="section-label">Our Range</div>
+      <h2>Core Product Lines</h2>
+    </div>
+    <a href="#cta" class="btn-secondary">Full Catalog</a>
+  </div>
+
+  <div class="products-grid">
+
+    <!-- Featured -->
+    <div class="product-card product-card-featured">
+      <div style="position:relative; z-index:1;">
+        <span class="featured-badge">Flagship</span>
+        <div class="product-icon">⚙️</div>
+        <h3>Hydraulic Power Units</h3>
+        <p>Custom-engineered hydraulic systems delivering 50–500 bar operating pressure. Available in open and closed-loop configurations with full PLC integration capability.</p>
+        <div>
+          <span class="product-tag">Up to 500 bar</span>
+          <span class="product-tag">PLC Ready</span>
+          <span class="product-tag">Custom Build</span>
+        </div>
+      </div>
+      <div class="featured-visual">
+        <div class="cog-animation">
+          <div class="cog-outer"></div>
+          <div class="cog-inner"></div>
+          <div class="cog-center"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-icon">🔩</div>
+      <h3>Precision Gear Systems</h3>
+      <p>Helical, bevel, and planetary gear assemblies machined to DIN 3960 tolerances for heavy-load applications.</p>
+      <div>
+        <span class="product-tag">DIN 3960</span>
+        <span class="product-tag">Heavy Duty</span>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-icon">🔧</div>
+      <h3>Industrial Valves</h3>
+      <p>Gate, globe, ball, and check valves in SS304/316, carbon steel, and exotic alloys for chemical and oil & gas sectors.</p>
+      <div>
+        <span class="product-tag">API 600</span>
+        <span class="product-tag">ANSI B16.34</span>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-icon">⚡</div>
+      <h3>Linear Actuators</h3>
+      <p>Electric and pneumatic linear actuators with strokes from 50mm to 2000mm. Customizable force ratings up to 50kN.</p>
+      <div>
+        <span class="product-tag">Electric</span>
+        <span class="product-tag">Pneumatic</span>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-icon">🏗️</div>
+      <h3>Structural Fasteners</h3>
+      <p>High-tensile bolts, studs, and specialty fasteners in grades up to 12.9. Custom thread profiles on request.</p>
+      <div>
+        <span class="product-tag">Grade 12.9</span>
+        <span class="product-tag">Custom Thread</span>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-icon">💧</div>
+      <h3>Sealing Solutions</h3>
+      <p>O-rings, mechanical seals, and gaskets engineered from PTFE, Viton, and EPDM compounds for extreme environments.</p>
+      <div>
+        <span class="product-tag">PTFE</span>
+        <span class="product-tag">Viton</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="why-visual">
+    <div class="blueprint-box bb1">
+      <div class="bb-label">Assembly Detail A</div>
+      <div class="bb-num">01</div>
+    </div>
+    <div class="blueprint-box bb2">
+      <div class="bb-label">Cross Section B</div>
+      <div class="bb-num">02</div>
+    </div>
+    <div class="blueprint-box bb3">
+      <div class="bb-label">Tolerance Zone</div>
+      <div class="bb-num">03</div>
+    </div>
+  </div>
+
+  <div>
+    <div class="section-label">Why Flacon Corporation</div>
+    <h2 style="margin-bottom:2.5rem;">Built On Standards. Driven By Performance.</h2>
+    <div class="why-features">
+      <div class="feature-row">
+        <div class="feature-num">01</div>
+        <div class="feature-text">
+          <h4>In-House Manufacturing</h4>
+          <p>Vertical integration across CNC machining, heat treatment, and surface finishing ensures quality at every stage without third-party delays.</p>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-num">02</div>
+        <div class="feature-text">
+          <h4>Engineering Support</h4>
+          <p>Our team of certified mechanical engineers provides full application support — from design consultation to installation supervision.</p>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-num">03</div>
+        <div class="feature-text">
+          <h4>Rapid Prototyping</h4>
+          <p>From CAD to functional prototype in as little as 72 hours using our dedicated rapid tooling and additive manufacturing facility.</p>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-num">04</div>
+        <div class="feature-text">
+          <h4>Global Supply Chain</h4>
+          <p>Stocking hubs across 3 continents ensure critical spares reach your facility within 48 hours, anywhere in the world.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section id="cta">
+  <div>
+    <div class="section-label">Let's Talk</div>
+    <h2>Ready to Engineer Your Next Project?</h2>
+    <p>Speak with a product specialist and get a custom quote within 24 hours.</p>
+  </div>
+  <div style="display:flex; flex-direction:column; gap:1rem; align-items:flex-end;">
+    <a href="mailto:enquiries@Flacon Corporation.com" class="btn-primary" style="text-align:center; min-width:200px;">Request Quote</a>
+    <span style="font-size:0.8rem; color:var(--mist); letter-spacing:1px;">or call +1 800 Flacon Corporation</span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Flacon <span>Corporation</span></div>
+  <p>© 2026 Flacon Corporation Industries. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Careers</a>
+    <a href="#">Certifications</a>
+  </div>
+</footer>
+
+</body>
+</html>
