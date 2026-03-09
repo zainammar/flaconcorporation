@@ -1,40 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- Header -->
+<div id="content1" class="content-box">Loading first file...</div>
+<style>
+img{
+    border-radius: 8px;
+    border-color: brown;
+    border-style: solid;
+    border-width: 1px;
+}
+</style>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flacon Corporation — Precision Engineering Products</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="css/style-flacon.css">
-    <style>
-        :root {
-            --steel: #1a1f2e;
-            --iron: #0d1117;
-            --chrome: #b8c4d0;
-            --orange: #e85d04;
-            --amber: #f48c06;
-            --slate: #2d3748;
-            --mist: #8899aa;
-            --white: #f0f4f8;
-        }
-    </style>
-</head>
 
-<body>
 
-    <!-- NAV -->
-    <nav>
-        <div class="logo">Flacon <span> Corporation</span></div>
-        <ul>
-            <li><a href="#products">Products</a></li>
-            <li><a href="#why">Why Us</a></li>
-            <li><a href="#cta">Contact</a></li>
-            <li><a href="#cta" class="nav-cta">Get Quote</a></li>
-        </ul>
-    </nav>
+
+
+
 
     <!-- HERO -->
     <section id="hero">
@@ -271,36 +250,31 @@
         </div>
     </section>
 
-    <!-- CTA BANNER -->
-    <section id="cta">
-        <div>
-            <div class="section-label">Let's Talk </div>
-            <h2>
-                Address
-            </h2>
-            <p>Workshop Address: Plot No, D-70, Shop No.2 & 8, Taj Petroleum Market, Ghani chowrangi, S.I.T.E,, Karachi,
-                Pakistan.</p>
-        </div>
-        <div style="display:flex; flex-direction:column; gap:1rem; align-items:flex-end;">
-            <a href="mailto:info@flaconcorporation.com" class="btn-primary"
-                style="text-align:center; min-width:200px;">info@flaconcorporation.com <br>📲 <br> 03003629275
-                <br> 03332481299 </a>
-            <!-- <span style="font-size:0.8rem; color:var(--mist); letter-spacing:1px;">or call Flacon Corporation</span> -->
-        </div>
-    </section>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-logo">Flacon <span>Corporation</span></div>
-        <p>© 2026 Flacon Corporation Industries. All rights reserved.</p>
-        <div class="footer-links">
-            <a href="#">Privacy</a>
-            <a href="#">Terms</a>
-            <a href="#">Careers</a>
-            <a href="#">Certifications</a>
-        </div>
-    </footer>
 
-</body>
 
-</html>
+<div id="content2" class="content-box">Loading second file...</div>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+      // You can change the file names here
+      const filesToLoad = {
+        content1: 'page1.html',
+        content2: 'page2.html'
+      };
+    
+      // Loop through and load each file into its matching div
+      for (const [divId, filename] of Object.entries(filesToLoad)) {
+        fetch(filename)
+          .then(response => {
+            if (!response.ok) throw new Error(`File not found: ${filename}`);
+            return response.text();
+          })
+          .then(data => {
+            document.getElementById(divId).innerHTML = data;
+          })
+          .catch(error => {
+            document.getElementById(divId).innerHTML = `<p style="color:red">${error.message}</p>`;
+          });
+      }
+    });
+    </script>
