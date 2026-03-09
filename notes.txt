@@ -1,0 +1,12 @@
+<!-- Header -->
+<div id="content1" class="content-box">Loading first file...</div>
+<style>
+img{
+    border-radius: 8px;
+    border-color: brown;
+    border-style: solid;
+    border-width: 1px;
+}
+</style>
+
+
