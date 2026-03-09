@@ -1,130 +1,6 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
-*{
-  padding: 0px;
-  margin: 0px;
-}
-
-/* GRID */
-
-/* Grid Content */
-.content-grid {
-  display: grid;
-  gap: 10px;
-}
-
-
-
-
-.grid-container {
-  display: grid;
-  grid-template-columns: 200px 300px; /* First column 200px, second column 300px */
-
-  
-}
-
-.grid-item-1 {
-  padding:10px;
-  text-align: center;  
-}
-
-.grid-item-2 {
-  padding:10px;
-  text-align: left;  
-}
-
-/* Mobile First - 1 column for all rows */
-.row-1, .row-2, .row-3, .row-4 {
-  display: grid;
- 
-  
- 
-}
-
-/* Desktop View */
-@media screen and (min-width: 768px) {
-
-  /* 1 column, 1 row (remains the same) */
-  .row-1 {
-      grid-template-columns: 1fr;
-     
-  }
-
-  /* 2 columns, 1 row */
-  .row-2 {
-      grid-template-columns: 1fr 1fr;
-      
-      
-  }
-
-  /* 3 columns, 1 row */
-  .row-3 {
-      grid-template-columns: 1fr 1fr 1fr;
-     
-  }
-
-  /* 4 columns, 1 row */
-  .row-4 {
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-     
-  }
-
-  /* 5 columns, 1 row */
-  .row-5 {
-    grid-template-columns: 1fr 2fr 1fr 1fr;
-   
-}
-
-    /*6 columns, 1 row */
-    .row-6 {
-      grid-template-columns: 1fr 3fr 1fr;
-     
-  }
-
-      /*6 columns, 1 row */
-      .row-7 {
-        grid-template-columns: 1fr 2fr 2fr 1fr;
-       
-    }
-
-     /*6 columns, 1 row */
-     .row-8 {
-      grid-template-columns: 2fr 2fr;
-     
-  }
-  .row-9 {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-   
-}
-
-
-
-.row-9 {
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
- 
-}
-}
-
-
-.grid-item img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-.bg-x{
-  background-color:#3B1E54;
-  border-radius:50px;
-}
-
-.bg-11{
-  background-color:#3B1E54;
-}
-
-.bg-1-next{
-  background-image: linear-gradient(to right top, #1f1c2c, #4f475c, #85778f, #c0aac6, #ffe1ff);
-}
 
 body {
   background: var(--iron);
@@ -670,6 +546,63 @@ h1 { animation-delay: 0.25s; }
   .why-visual { display: none; }
   #cta { margin: 0 2rem 4rem; grid-template-columns: 1fr; padding: 2.5rem; }
   footer { padding: 2rem; flex-direction: column; gap: 1rem; text-align: center; }
+}
+
+
+
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial;
+}
+
+.header {
+  text-align: center;
+  padding: 32px;
+}
+
+.row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+/* Create four equal columns that sits next to each other */
+.column {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+  max-width: 25%;
+  padding: 0 4px;
+}
+
+.column img {
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+  .column {
+    -ms-flex: 50%;
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    -ms-flex: 100%;
+    flex: 100%;
+    max-width: 100%;
+  }
 }
 
 
